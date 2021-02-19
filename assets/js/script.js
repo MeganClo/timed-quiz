@@ -67,7 +67,37 @@ var QandA = [
             c: "'comment would go here'",
             d: "* comment would go here"
         },
-        correctAnswer: 'a'
+        correctAnswer: "a"
     },
-    
+    {
+        question: "Which of these shows a correct way to declare a JavaScript variable?",
+        answersChoice: {
+            a: "var myName",
+            b: "variable = myName",
+            c: "var(myName)",
+            d: "v myName"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "Who invented JavaScript?",
+        answersChoice: {
+            a: "John Resig",
+            b: "Brendan Eich",
+            c: "Javier Scripter",
+            d: "Yan Zhu"
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "What data type is boolean?",
+        answersChoice: {
+            a: "True or False",
+            b: "large numbers",
+            c: "decimal number values",
+            d: "Symbols"
+        },
+        correctAnswer: "a"
+    }
+
 ]
