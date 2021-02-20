@@ -42,6 +42,11 @@ body.right {
     box-shadow: 0 0 15px 3px;
 }
 
+.start-button {
+    display: flex;
+    justify-content: center;
+}
+
 #answers {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -54,4 +59,17 @@ body.right {
     border: solid 1px var(--primary-color);
     color: var(--tertiary-color);
     text-align: center;
+    border-radius: 10px;
+}
+
+.button:hover {
+    border-width: 5px;
+}
+
+#startQuiz-btn {
+    font-size: 25px;
+}
+
+.hidden {
+    display: none;
 }
