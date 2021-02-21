@@ -1,3 +1,23 @@
+// targetting the question section of html
+var questionEl = document.getElementById("questions");
+
+// targetting the answer buttons
+var answerEl1 = document.getElementById("answer-btn1");
+var answerEl2 = document.getElementById("answer-btn2");
+var answerEl3 = document.getElementById("answer-btn3");
+var answerEl4 = document.getElementById("answer-btn4");
+
+// time element
+function countdown() {
+    var timeLeft = 45;
+    var timeInterval = setInterval(function() {
+        if (timeLeft > 0) {
+            nextQuestion();
+        }
+    })
+}
+
+// Possible Questions to be asked during quiz
 var QandA = [
     {
         question: "When a function belongs to an object, we refer to it as what?",
@@ -101,3 +121,52 @@ var QandA = [
     }
 
 ]
+
+// Shuffling the Questions so that they are asked in a different order every time. 
+var randomQuestions = QandA.sort(() => Math.random() - 0.5);
+console.log(randomQuestions);
+
+currentQuestionIndex = 0;
+
+// Targeting the Start Quiz button
+var startButton = document.getElementById('startQuiz-btn');
+
+// Targeting the div with the start button to hide after it's clicked
+var hideButton = document.querySelector(".start-button");
+
+// Targeting my hidden containter to "unhide"
+var showQuestions = document.querySelector(".hidden");
+
+// Starting the quiz once button is clicked
+startButton.onclick = startQuiz;
+
+// fuction to start quiz
+function startQuiz() {
+    console.log ("testing button!");
+    showQuestions.classList.remove("hidden");
+    hideButton.classList.add("hidden");
+    insertQandA();
+};
+
+
+
+// inserting my questions and answers into my HTML
+function insertQandA() {
+    questionEl.innerText = randomQuestions[currentQuestionIndex].question;
+    answerEl1.innerText = randomQuestions[currentQuestionIndex].answersChoice.a;
+    answerEl2.innerText = randomQuestions[currentQuestionIndex].answersChoice.b;
+    answerEl3.innerText = randomQuestions[currentQuestionIndex].answersChoice.c;
+    answerEl4.innerText = randomQuestions[currentQuestionIndex].answersChoice.d;
+};
+
+function nextQuestion() {
+    
+
+};
+
+
+function chooseAnswer() {
+
+};
+console.log(randomQuestions);
+console.log(randomQuestions[currentQuestionIndex].question);
