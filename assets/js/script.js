@@ -1,6 +1,8 @@
 // targetting the question section of html
 var questionEl = document.getElementById("questions");
 
+var answerButtons = document.querySelector("#answers");
+
 
 // targetting the specific answer buttons
 var answerEl1 = document.getElementById("answer-btn1");
@@ -142,21 +144,6 @@ var showQuestions = document.querySelector(".hidden");
 // Starting the quiz once button is clicked
 startButton.onclick = startQuiz;
 
-
-
-// fuction to start quiz
-function startQuiz() {
-    console.log ("testing button!");
-    showQuestions.classList.remove("hidden");
-    hideButton.classList.add("hidden");
-    insertQandA();
-    var answerButtons = document.querySelector("#answers");
-    answerButtons.addEventListener("click", nextQuestion);
-    insertQandA();
-};
-
-
-
 // inserting my questions and answers into my HTML
 function insertQandA() {
     questionEl.innerText = randomQuestions[currentQuestionIndex].question;
@@ -166,8 +153,19 @@ function insertQandA() {
     answerEl4.innerText = randomQuestions[currentQuestionIndex].answersChoice.d;
 };
 
+// fuction to start quiz
+function startQuiz() {
+    console.log ("testing button!");
+    showQuestions.classList.remove("hidden");
+    hideButton.classList.add("hidden");
+    insertQandA();
+    answerButtons.addEventListener("click", nextQuestion);
+    insertQandA();
+};
+
+
 function nextQuestion() {
-    if (answerButtons.innerText === correctAnswer.value) {
+    if (answerButtons.innerText === randomQuestions.correctAnswer.value) {
         currentQuestionIndex = currentQuestionIndex + 1;
         insertQandA;
     }
