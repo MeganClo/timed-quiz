@@ -1,8 +1,6 @@
 // targetting the question section of html
 var questionEl = document.getElementById("questions");
 
-// targeting all answer buttons
-var answerButtons = document.querySelector("answers");
 
 // targetting the specific answer buttons
 var answerEl1 = document.getElementById("answer-btn1");
@@ -11,14 +9,14 @@ var answerEl3 = document.getElementById("answer-btn3");
 var answerEl4 = document.getElementById("answer-btn4");
 
 // time element
-function countdown() {
-    var timeLeft = 45;
-    var timeInterval = setInterval(function() {
-        if (timeLeft > 0) {
-            nextQuestion();
-        }
-    })
-}
+//function countdown() {
+//    var timeLeft = 45;
+//    var timeInterval = setInterval(function() {
+//        if (timeLeft > 0) {
+//            nextQuestion();
+//        }
+//    })
+//}
 
 // Possible Questions to be asked during quiz
 var QandA = [
@@ -144,13 +142,16 @@ var showQuestions = document.querySelector(".hidden");
 // Starting the quiz once button is clicked
 startButton.onclick = startQuiz;
 
-answerButtons.addEventListener("click", nextQuestion);
+
 
 // fuction to start quiz
 function startQuiz() {
     console.log ("testing button!");
     showQuestions.classList.remove("hidden");
     hideButton.classList.add("hidden");
+    insertQandA();
+    var answerButtons = document.querySelector("#answers");
+    answerButtons.addEventListener("click", nextQuestion);
     insertQandA();
 };
 
@@ -166,11 +167,10 @@ function insertQandA() {
 };
 
 function nextQuestion() {
-    if (innerText === correctAnswer.value) {
+    if (answerButtons.innerText === correctAnswer.value) {
         currentQuestionIndex = currentQuestionIndex + 1;
         insertQandA;
     }
-
 };
 
 
