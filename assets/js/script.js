@@ -1,7 +1,10 @@
 // targetting the question section of html
 var questionEl = document.getElementById("questions");
 
-// targetting the answer buttons
+// targeting all answer buttons
+var answerButtons = document.querySelector("answers");
+
+// targetting the specific answer buttons
 var answerEl1 = document.getElementById("answer-btn1");
 var answerEl2 = document.getElementById("answer-btn2");
 var answerEl3 = document.getElementById("answer-btn3");
@@ -27,7 +30,7 @@ var QandA = [
             c: "a property",
             d: "a value"
         },
-        correctAnswer: "a"
+        correctAnswer: "a method"
     },
     {
         question: "Variables declared outside of any function are called what?",
@@ -37,7 +40,7 @@ var QandA = [
             c: "global function", 
             d: "single value"
         },
-        correctAnswer: "c"
+        correctAnswer: "global function"
     },
     {
         question: "Which of the below is NOT a data type in JavaScript?",
@@ -47,7 +50,7 @@ var QandA = [
             c: "null",
             d: "all are data types in JavaScript",
         },
-        correctAnswer: "d"
+        correctAnswer: "all are data types in JavaScript"
     },
     {
         question: "We put our JavaScript inside what HTML element?",
@@ -57,7 +60,7 @@ var QandA = [
             c: "<script>",
             d: "<href>"
         },
-        correctAnswer: "c"
+        correctAnswer: "<script>"
     },
     {
         question: "How would you put 'Hello Joe' in an alert box?",
@@ -67,7 +70,7 @@ var QandA = [
             c: "message('Hello Joe')",
             d: "both A and B are correct."
         },
-        correctAnswer: "d"
+        correctAnswer: "both A and B are correct."
     },
     {
         question: "How do you create a function called 'newFunction' in JavaScript?",
@@ -77,7 +80,7 @@ var QandA = [
             c: "function = newFunction()",
             d: "function (newFunction)"
         },
-        correctAnswer: "b"
+        correctAnswer: "function newFunction()"
     },
     {
         question: "What is one way you can add a comment in JavaScript?",
@@ -87,7 +90,7 @@ var QandA = [
             c: "'comment would go here'",
             d: "* comment would go here"
         },
-        correctAnswer: "a"
+        correctAnswer: "// comment would go here"
     },
     {
         question: "Which of these shows a correct way to declare a JavaScript variable?",
@@ -97,7 +100,7 @@ var QandA = [
             c: "var(myName)",
             d: "v myName"
         },
-        correctAnswer: "a"
+        correctAnswer: "var myName"
     },
     {
         question: "Who invented JavaScript?",
@@ -107,7 +110,7 @@ var QandA = [
             c: "Javier Scripter",
             d: "Yan Zhu"
         },
-        correctAnswer: "b"
+        correctAnswer: "Brendan Eich"
     },
     {
         question: "What data type is boolean?",
@@ -117,7 +120,7 @@ var QandA = [
             c: "decimal number values",
             d: "Symbols"
         },
-        correctAnswer: "a"
+        correctAnswer: "True or False"
     }
 
 ]
@@ -126,6 +129,7 @@ var QandA = [
 var randomQuestions = QandA.sort(() => Math.random() - 0.5);
 console.log(randomQuestions);
 
+// variable for my current question index
 currentQuestionIndex = 0;
 
 // Targeting the Start Quiz button
@@ -139,6 +143,8 @@ var showQuestions = document.querySelector(".hidden");
 
 // Starting the quiz once button is clicked
 startButton.onclick = startQuiz;
+
+answerButtons.addEventListener("click", nextQuestion);
 
 // fuction to start quiz
 function startQuiz() {
@@ -160,13 +166,16 @@ function insertQandA() {
 };
 
 function nextQuestion() {
-    
+    if (innerText === correctAnswer.value) {
+        currentQuestionIndex = currentQuestionIndex + 1;
+        insertQandA;
+    }
 
 };
 
 
 function chooseAnswer() {
-
+    
 };
 console.log(randomQuestions);
 console.log(randomQuestions[currentQuestionIndex].question);
