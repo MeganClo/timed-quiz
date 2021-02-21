@@ -153,6 +153,13 @@ function insertQandA() {
     answerEl4.innerText = randomQuestions[currentQuestionIndex].answersChoice.d;
 };
 
+function nextQuestion() {
+    if (answerButtons.innerText === randomQuestions.correctAnswer.value) {
+        currentQuestionIndex = currentQuestionIndex + 1;
+        insertQandA;
+    }
+};
+
 // fuction to start quiz
 function startQuiz() {
     console.log ("testing button!");
