@@ -11,6 +11,8 @@ var answerEl2 = document.getElementById("answer-btn2");
 var answerEl3 = document.getElementById("answer-btn3");
 var answerEl4 = document.getElementById("answer-btn4");
 
+var timeLeft = 
+
 // time element
 //function countdown() {
 //    var timeLeft = 45;
@@ -154,12 +156,6 @@ function insertQandA() {
     answerEl4.innerText = randomQuestions[currentQuestionIndex].answersChoice.d;
 };
 
-function nextQuestion() {
-    if (answerButtons.innerText === randomQuestions.correctAnswer.value) {
-        currentQuestionIndex = currentQuestionIndex + 1;
-        insertQandA;
-    }
-};
 
 // fuction to start quiz
 function startQuiz() {
@@ -167,22 +163,26 @@ function startQuiz() {
     showQuestions.classList.remove("hidden");
     hideButton.classList.add("hidden");
     insertQandA();
-    answerButtons.onclick = nextQuestion();
+//    answerButtons.onclick = nextQuestion();
 };
 
 
-function nextQuestion() {
-    console.log(answerButtons.innerText);
+function nextQuestion(event) {
+    var answer = (event.target.innerText);
+    console.log(answer);
     console.log(randomQuestions[currentQuestionIndex].correctAnswer);
-    if (answerButtons.innerText === randomQuestions[currentQuestionIndex].correctAnswer) {
+    if (answer === randomQuestions[currentQuestionIndex].correctAnswer) {
         currentQuestionIndex = currentQuestionIndex + 1;
+        console.logt(currentQuestionIndex);
         insertQandA;
     }
 };
 
+answerButtons.addEventListener("click", nextQuestion);
 
 
-nextQuestion();
+
+//nextQuestion();
 
 console.log(randomQuestions);
 console.log(randomQuestions[currentQuestionIndex].question);
