@@ -1,7 +1,8 @@
 // targetting the question section of html
 var questionEl = document.getElementById("questions");
 
-var answerButtons = document.querySelector("#answers");
+// targetting the answer buttons
+var answerButtons = document.getElementById("answers");
 
 
 // targetting the specific answer buttons
@@ -166,21 +167,22 @@ function startQuiz() {
     showQuestions.classList.remove("hidden");
     hideButton.classList.add("hidden");
     insertQandA();
-    answerButtons.addEventListener("click", nextQuestion);
-    insertQandA();
+    answerButtons.onclick = nextQuestion();
 };
 
 
 function nextQuestion() {
-    if (answerButtons.innerText === randomQuestions.correctAnswer.value) {
+    console.log(answerButtons.innerText);
+    console.log(randomQuestions[currentQuestionIndex].correctAnswer);
+    if (answerButtons.innerText === randomQuestions[currentQuestionIndex].correctAnswer) {
         currentQuestionIndex = currentQuestionIndex + 1;
         insertQandA;
     }
 };
 
 
-function chooseAnswer() {
-    
-};
+
+nextQuestion();
+
 console.log(randomQuestions);
 console.log(randomQuestions[currentQuestionIndex].question);
