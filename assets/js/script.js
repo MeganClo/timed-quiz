@@ -4,24 +4,14 @@ var questionEl = document.getElementById("questions");
 // targetting the answer buttons
 var answerButtons = document.getElementById("answers");
 
+// targetting where I want my timer to go
+var timerEl = document.getElementById("timer");
 
 // targetting the specific answer buttons
 var answerEl1 = document.getElementById("answer-btn1");
 var answerEl2 = document.getElementById("answer-btn2");
 var answerEl3 = document.getElementById("answer-btn3");
 var answerEl4 = document.getElementById("answer-btn4");
-
-var timeLeft = 
-
-// time element
-//function countdown() {
-//    var timeLeft = 45;
-//    var timeInterval = setInterval(function() {
-//        if (timeLeft > 0) {
-//            nextQuestion();
-//        }
-//    })
-//}
 
 // Possible Questions to be asked during quiz
 var QandA = [
@@ -125,7 +115,6 @@ var QandA = [
         },
         correctAnswer: "True or False"
     }
-
 ]
 
 // Shuffling the Questions so that they are asked in a different order every time. 
@@ -147,6 +136,20 @@ var showQuestions = document.querySelector(".hidden");
 // Starting the quiz once button is clicked
 startButton.onclick = startQuiz;
 
+
+// time element
+function countdown() {
+    var timeLeft = 45;
+    var timeInterval = setInterval(function() {
+        if (timeLeft > 0) {
+            timerEl.textContent = timeLeft;
+            timeLeft--;
+        } else {
+            timerEl.textContent = "Time is Out!";
+        }
+        }, 1000);
+};
+
 // inserting my questions and answers into my HTML
 function insertQandA() {
     questionEl.innerText = randomQuestions[currentQuestionIndex].question;
@@ -159,9 +162,9 @@ function insertQandA() {
 
 // fuction to start quiz
 function startQuiz() {
-    console.log ("testing button!");
     showQuestions.classList.remove("hidden");
     hideButton.classList.add("hidden");
+    countdown();
     insertQandA();
 //    answerButtons.onclick = nextQuestion();
 };
@@ -173,16 +176,18 @@ function nextQuestion(event) {
     console.log(randomQuestions[currentQuestionIndex].correctAnswer);
     if (answer === randomQuestions[currentQuestionIndex].correctAnswer) {
         currentQuestionIndex = currentQuestionIndex + 1;
-        console.logt(currentQuestionIndex);
-        insertQandA;
+        console.log(currentQuestionIndex);
+        insertQandA();
+    }
+    else {
+        currentQuestionIndex = currentQuestionIndex + 1;
+        console.log(currentQuestionIndex);
+        insertQandA();
     }
 };
 
 answerButtons.addEventListener("click", nextQuestion);
 
-
-
-//nextQuestion();
 
 console.log(randomQuestions);
 console.log(randomQuestions[currentQuestionIndex].question);
