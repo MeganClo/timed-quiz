@@ -14,9 +14,8 @@ var answerEl3 = document.getElementById("answer-btn3");
 var answerEl4 = document.getElementById("answer-btn4");
 
 // Setting the start time
-var timeLeft = 10;
-var timeInterval;
-var score = 0;
+var timeLeft = 45;
+var timeInterval = setInterval(countdown, 1000);
 
 // Possible Questions to be asked during quiz
 var QandA = [
@@ -144,14 +143,12 @@ startButton.onclick = startQuiz;
 
 // time element
 function countdown() {
-    var timeInterval = setInterval(function() {
         if (timeLeft > 0) {
             timerEl.textContent = timeLeft;
             timeLeft--;
         } else {
-            timerEl.textContent = "Time is Out!";
+            timerEl.textContent = "Time is Out!"; 
         }
-        }, 1000);
 };
 
 // inserting my questions and answers into my HTML
@@ -190,9 +187,8 @@ function nextQuestion(event) {
         insertQandA();
     }
     else {  
-        score = timeLeft;
-        clearInterval(countdown);
-        console.log(score);
+        clearInterval(timeInterval);
+        console.log(timeLeft);
     }
 };
 
