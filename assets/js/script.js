@@ -13,6 +13,11 @@ var answerEl2 = document.getElementById("answer-btn2");
 var answerEl3 = document.getElementById("answer-btn3");
 var answerEl4 = document.getElementById("answer-btn4");
 
+// Setting the start time
+var timeLeft = 10;
+var timeInterval;
+var score = 0;
+
 // Possible Questions to be asked during quiz
 var QandA = [
     {
@@ -59,11 +64,11 @@ var QandA = [
         question: "How would you put 'Hello Joe' in an alert box?",
         answersChoice: {
             a: "window.alert('Hello Joe')",
-            b: "alert.('Hello Joe')",
+            b: "display.('Hello Joe')",
             c: "message('Hello Joe')",
-            d: "both A and B are correct."
+            d: "function('Hello Joe')"
         },
-        correctAnswer: "both A and B are correct."
+        correctAnswer: "window.alert('Hello Joe')"
     },
     {
         question: "How do you create a function called 'newFunction' in JavaScript?",
@@ -139,7 +144,6 @@ startButton.onclick = startQuiz;
 
 // time element
 function countdown() {
-    var timeLeft = 45;
     var timeInterval = setInterval(function() {
         if (timeLeft > 0) {
             timerEl.textContent = timeLeft;
@@ -172,17 +176,23 @@ function startQuiz() {
 
 function nextQuestion(event) {
     var answer = (event.target.innerText);
-    console.log(answer);
-    console.log(randomQuestions[currentQuestionIndex].correctAnswer);
-    if (answer === randomQuestions[currentQuestionIndex].correctAnswer) {
+    //console.log(answer);
+    //console.log(randomQuestions[currentQuestionIndex].correctAnswer);
+    if (answer === randomQuestions[currentQuestionIndex].correctAnswer && currentQuestionIndex < 3 && timeLeft > 0) {
         currentQuestionIndex = currentQuestionIndex + 1;
         console.log(currentQuestionIndex);
         insertQandA();
     }
-    else {
+    else if (currentQuestionIndex < 3 && timeLeft > 0) {
         currentQuestionIndex = currentQuestionIndex + 1;
         console.log(currentQuestionIndex);
+        timeLeft = timeLeft-5;
         insertQandA();
+    }
+    else {  
+        score = timeLeft;
+        clearInterval(countdown);
+        console.log(score);
     }
 };
 
