@@ -7,6 +7,21 @@ var answerButtons = document.getElementById("answers");
 // targetting where I want my timer to go
 var timerEl = document.getElementById("timer");
 
+// variable for my current question index
+currentQuestionIndex = 0;
+
+// Targeting the Start Quiz button
+var startButton = document.getElementById('startQuiz-btn');
+
+// Targeting the div with the start button to hide after it's clicked
+var hideButton = document.querySelector(".start-button");
+
+// Targeting my hidden containter to "unhide"
+var showQuestions = document.querySelector(".hidden");
+
+//setting the amount of questions to be asked
+var indexOf = 3;
+
 // targetting the specific answer buttons
 var answerEl1 = document.getElementById("answer-btn1");
 var answerEl2 = document.getElementById("answer-btn2");
@@ -15,7 +30,7 @@ var answerEl4 = document.getElementById("answer-btn4");
 
 // Setting the start time
 var timeLeft = 45;
-var timeInterval = setInterval(countdown, 1000);
+var timeInterval = ""
 
 // Possible Questions to be asked during quiz
 var QandA = [
@@ -125,29 +140,14 @@ var QandA = [
 var randomQuestions = QandA.sort(() => Math.random() - 0.5);
 console.log(randomQuestions);
 
-// variable for my current question index
-currentQuestionIndex = 0;
-
-// Targeting the Start Quiz button
-var startButton = document.getElementById('startQuiz-btn');
-
-// Targeting the div with the start button to hide after it's clicked
-var hideButton = document.querySelector(".start-button");
-
-// Targeting my hidden containter to "unhide"
-var showQuestions = document.querySelector(".hidden");
-
-// Starting the quiz once button is clicked
-startButton.onclick = startQuiz;
-
-
 // time element
 function countdown() {
         if (timeLeft > 0) {
             timerEl.textContent = timeLeft;
             timeLeft--;
         } else {
-            timerEl.textContent = "Time is Out!"; 
+            timerEl.textContent = "Time is Out!";
+            startOver();
         }
 };
 
@@ -165,9 +165,22 @@ function insertQandA() {
 function startQuiz() {
     showQuestions.classList.remove("hidden");
     hideButton.classList.add("hidden");
-    countdown();
+    timeInterval = setInterval(countdown, 1000);
     insertQandA();
 //    answerButtons.onclick = nextQuestion();
+};
+
+function startOver() {
+    showQuestions.classList.add("hidden");
+    hideButton.classList.remove("hidden");
+    startButton.innerText = "Play Again";
+    clearInterval(timeInterval);
+    timeLeft = 45;
+    indexOf = 3;
+    timerEl.textContent = timeLeft; 
+
+//    startQuiz();
+    
 };
 
 
@@ -175,22 +188,35 @@ function nextQuestion(event) {
     var answer = (event.target.innerText);
     //console.log(answer);
     //console.log(randomQuestions[currentQuestionIndex].correctAnswer);
-    if (answer === randomQuestions[currentQuestionIndex].correctAnswer && currentQuestionIndex < 3 && timeLeft > 0) {
+    if (answer === randomQuestions[currentQuestionIndex].correctAnswer && currentQuestionIndex < indexOf && timeLeft > 0) {
         currentQuestionIndex = currentQuestionIndex + 1;
-        console.log(currentQuestionIndex);
         insertQandA();
     }
-    else if (currentQuestionIndex < 3 && timeLeft > 0) {
+    else if (currentQuestionIndex < indexOf && timeLeft > 0) {
         currentQuestionIndex = currentQuestionIndex + 1;
-        console.log(currentQuestionIndex);
         timeLeft = timeLeft-5;
-        insertQandA();
+        if (timeLeft > 0) {
+            insertQandA();
+        }
+        else {
+            startOver();
+        }
+
     }
     else {  
         clearInterval(timeInterval);
-        console.log(timeLeft);
+//        startOver();
+        score();
+
     }
 };
+
+function score() {
+    window.prompt("Congratulations on a highscore! Please enter your name");
+}
+
+// Starting the quiz once button is clicked
+startButton.onclick = startQuiz;
 
 answerButtons.addEventListener("click", nextQuestion);
 
