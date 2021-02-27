@@ -40,7 +40,7 @@ body.right {
     box-shadow: 0 0 15px 3px;
 }
 
-.start-button {
+.start-button, .again {
     display: flex;
     justify-content: center;
 }

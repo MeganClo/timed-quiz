@@ -4,6 +4,9 @@ var questionEl = document.getElementById("questions");
 // targetting the answer buttons
 var answerButtons = document.getElementById("answers");
 
+// targetting the play again button
+var startAgain = document.getElementById("again-btn");
+
 // targetting where I want my timer to go
 var timerEl = document.getElementById("timer");
 
@@ -138,7 +141,8 @@ var QandA = [
 
 // Shuffling the Questions so that they are asked in a different order every time. 
 var randomQuestions = QandA.sort(() => Math.random() - 0.5);
-console.log(randomQuestions);
+console.log(randomQuestions)
+
 
 // time element
 function countdown() {
@@ -147,7 +151,8 @@ function countdown() {
             timeLeft--;
         } else {
             timerEl.textContent = "Time is Out!";
-            startOver();
+            showQuestions.classList.add("hidden");
+            startAgain.classList.remove("hidden");
         }
 };
 
@@ -171,54 +176,39 @@ function startQuiz() {
 };
 
 function startOver() {
-    showQuestions.classList.add("hidden");
-    hideButton.classList.remove("hidden");
-    startButton.innerText = "Play Again";
-    clearInterval(timeInterval);
-    timeLeft = 45;
-    indexOf = 3;
-    timerEl.textContent = timeLeft; 
-
-//    startQuiz();
-    
+    location.reload();
 };
-
 
 function nextQuestion(event) {
     var answer = (event.target.innerText);
-    //console.log(answer);
-    //console.log(randomQuestions[currentQuestionIndex].correctAnswer);
-    if (answer === randomQuestions[currentQuestionIndex].correctAnswer && currentQuestionIndex < indexOf && timeLeft > 0) {
+
+    if (answer === randomQuestions[currentQuestionIndex].correctAnswer && currentQuestionIndex <= indexOf && timeLeft > 0) {
         currentQuestionIndex = currentQuestionIndex + 1;
         insertQandA();
     }
-    else if (currentQuestionIndex < indexOf && timeLeft > 0) {
+    else if (currentQuestionIndex <= indexOf && timeLeft > 0) {
         currentQuestionIndex = currentQuestionIndex + 1;
         timeLeft = timeLeft-5;
-        if (timeLeft > 0) {
-            insertQandA();
-        }
-        else {
-            startOver();
-        }
-
+        insertQandA();
     }
-    else {  
+    else (timeLeft > 0 && currentQuestionIndex > indexOf) {
         clearInterval(timeInterval);
-//        startOver();
         score();
-
     }
 };
 
 function score() {
     window.prompt("Congratulations on a highscore! Please enter your name");
-}
+};
 
 // Starting the quiz once button is clicked
 startButton.onclick = startQuiz;
 
+// listening for "click" to trigger the next question
 answerButtons.addEventListener("click", nextQuestion);
+
+// starting the game again
+startAgain.onclick = startOver;
 
 
 console.log(randomQuestions);
