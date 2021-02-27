@@ -4,9 +4,6 @@ var questionEl = document.getElementById("questions");
 // targetting the answer buttons
 var answerButtons = document.getElementById("answers");
 
-// targetting the play again button
-var startAgain = document.getElementById("again-btn");
-
 // targetting where I want my timer to go
 var timerEl = document.getElementById("timer");
 
@@ -16,8 +13,10 @@ currentQuestionIndex = 0;
 // Targeting the Start Quiz button
 var startButton = document.getElementById('startQuiz-btn');
 
-// Targeting the div with the start button to hide after it's clicked
-var hideButton = document.querySelector(".start-button");
+// targetting the play again button
+var startAgain = document.getElementById("again-btn");
+
+var highscores = document.getElementById("score");
 
 // Targeting my hidden containter to "unhide"
 var showQuestions = document.querySelector(".hidden");
@@ -34,6 +33,10 @@ var answerEl4 = document.getElementById("answer-btn4");
 // Setting the start time
 var timeLeft = 45;
 var timeInterval = ""
+
+// variable to store scores
+var scores = [];
+
 
 // Possible Questions to be asked during quiz
 var QandA = [
@@ -169,10 +172,9 @@ function insertQandA() {
 // fuction to start quiz
 function startQuiz() {
     showQuestions.classList.remove("hidden");
-    hideButton.classList.add("hidden");
+    startButton.classList.add("hidden");
     timeInterval = setInterval(countdown, 1000);
     insertQandA();
-//    answerButtons.onclick = nextQuestion();
 };
 
 function startOver() {
@@ -191,14 +193,18 @@ function nextQuestion(event) {
         timeLeft = timeLeft-5;
         insertQandA();
     }
-    else (timeLeft > 0 && currentQuestionIndex > indexOf) {
+    else if (timeLeft > 0 && currentQuestionIndex > indexOf) {
         clearInterval(timeInterval);
         score();
+    }
+    else {
+        startOver();
     }
 };
 
 function score() {
-    window.prompt("Congratulations on a highscore! Please enter your name");
+    showQuestions.classList.add("hidden");
+    highscores.classList.remove("hidden");
 };
 
 // Starting the quiz once button is clicked
