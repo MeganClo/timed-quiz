@@ -22,32 +22,8 @@ var startAgain = document.getElementById("again-btn");
 // targetting the highscore form
 var highscores = document.getElementById("score");
 
-// saving highscores
+// targetting submit button 
 var submitButton = document.getElementById("submit-btn");
-
-
-
-var userName = ""; 
-
-submitButton.addEventListener("click", function() {
-    event.preventDefault();
-    // fetch userName from input field
-    userName = document.getElementById("name").value;
-    // fetch user score
-    var score = (timeLeft + 1);
-    console.log(userName.value);
-    // fetch old scores from localStorage or create a new one if it's an empty array
-    var savedScores = JSON.parse(localStorage.getItem("scores") || "[]");
-    console.log("oldScores: ", savedScores);
-    // add new userName and score to saved scores
-    savedScores.push({ userName, score});
-    // save the new array to localStorage
-    localStorage.setItem("scores", JSON.stringify(savedScores));
-    console.log("newScores: ", savedScores);
-});
-
-
-
 
 //setting the amount of questions to be asked
 var indexOf = 3;
@@ -61,8 +37,6 @@ var answerEl4 = document.getElementById("answer-btn4");
 // Setting the start time
 var timeLeft = 45;
 var timeInterval = ""
-
-
 
 // Possible Questions to be asked during quiz
 var QandA = [
@@ -203,10 +177,12 @@ function startQuiz() {
     insertQandA();
 };
 
+// function to reload the page to start the quiz again
 function startOver() {
     location.reload();
 };
 
+// function to move through the quiz questions and end the game
 function nextQuestion(event) {
     var answer = (event.target.innerText);
 
@@ -225,6 +201,7 @@ function nextQuestion(event) {
     }
 };
 
+// function to submit the userName
 function score() {
     showQuestions.classList.add("hidden");
     highscores.classList.remove("hidden");
@@ -238,6 +215,28 @@ answerButtons.addEventListener("click", nextQuestion);
 
 // starting the game again
 startAgain.onclick = startOver;
+
+// submitting score and starting over
+submitButton.addEventListener("click", function() {
+    event.preventDefault();
+    // fetch userName from input field
+    var userName = document.getElementById("name").value;
+    // fetch user score
+    var score = (timeLeft + 1);
+    // fetch old scores from localStorage or create a new one if it's an empty array
+    var savedScores = JSON.parse(localStorage.getItem("scores") || "[]");
+    console.log("oldScores: ", savedScores);
+    // add new userName and score to saved scores
+    savedScores.push({ userName, score});
+    // save the new array to localStorage
+    localStorage.setItem("scores", JSON.stringify(savedScores));
+    console.log("newScores: ", savedScores);
+    var link = document.getElementById("after-submit");
+    link.classList.remove("hidden");
+    highscores.classList.add("hidden");
+});
+
+
 
 
 

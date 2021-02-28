@@ -76,3 +76,8 @@ body.right {
 header {
     margin-top:2px;
 }
+
+a {
+    margin: auto;
+    color: var(--tertiary-color);
+}
