@@ -13,13 +13,24 @@ currentQuestionIndex = 0;
 // Targeting the Start Quiz button
 var startButton = document.getElementById('startQuiz-btn');
 
+// Targeting my hidden containter to "unhide"
+var showQuestions = document.querySelector(".hidden");
+
 // targetting the play again button
 var startAgain = document.getElementById("again-btn");
 
+// targetting the highscore form
 var highscores = document.getElementById("score");
 
-// Targeting my hidden containter to "unhide"
-var showQuestions = document.querySelector(".hidden");
+// saving highscores
+var submitButton = document.getElementById("submit-btn");
+
+
+submitButton.addEventListener("click", function() {
+    var userName = document.getElementById("name");
+    console.log(userName.value);
+});
+
 
 //setting the amount of questions to be asked
 var indexOf = 3;
@@ -193,12 +204,9 @@ function nextQuestion(event) {
         timeLeft = timeLeft-5;
         insertQandA();
     }
-    else if (timeLeft > 0 && currentQuestionIndex > indexOf) {
+    else {
         clearInterval(timeInterval);
         score();
-    }
-    else {
-        startOver();
     }
 };
 
@@ -215,6 +223,8 @@ answerButtons.addEventListener("click", nextQuestion);
 
 // starting the game again
 startAgain.onclick = startOver;
+
+
 
 
 console.log(randomQuestions);
