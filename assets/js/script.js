@@ -25,14 +25,24 @@ var highscores = document.getElementById("score");
 // saving highscores
 var submitButton = document.getElementById("submit-btn");
 
-var userName = "";
 
+
+var userName = ""; 
 
 submitButton.addEventListener("click", function() {
     event.preventDefault();
     userName = document.getElementById("name");
     console.log(userName.value);
 });
+
+// array of objects to store scores
+var scores = [
+    {
+        user: userName.value,
+        score: (timeLeft + 1)
+    }
+];
+
 
 
 //setting the amount of questions to be asked
@@ -48,8 +58,6 @@ var answerEl4 = document.getElementById("answer-btn4");
 var timeLeft = 45;
 var timeInterval = ""
 
-// variable to store scores
-var scores = [];
 
 
 // Possible Questions to be asked during quiz
