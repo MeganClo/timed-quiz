@@ -31,17 +31,21 @@ var userName = "";
 
 submitButton.addEventListener("click", function() {
     event.preventDefault();
-    userName = document.getElementById("name");
+    // fetch userName from input field
+    userName = document.getElementById("name").value;
+    // fetch user score
+    var score = (timeLeft + 1);
     console.log(userName.value);
+    // fetch old scores from localStorage or create a new one if it's an empty array
+    var savedScores = JSON.parse(localStorage.getItem("scores") || "[]");
+    console.log("oldScores: ", savedScores);
+    // add new userName and score to saved scores
+    savedScores.push({ userName, score});
+    // save the new array to localStorage
+    localStorage.setItem("scores", JSON.stringify(savedScores));
+    console.log("newScores: ", savedScores);
 });
 
-// array of objects to store scores
-var scores = [
-    {
-        user: userName.value,
-        score: (timeLeft + 1)
-    }
-];
 
 
 
