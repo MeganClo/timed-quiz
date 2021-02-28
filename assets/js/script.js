@@ -25,9 +25,12 @@ var highscores = document.getElementById("score");
 // saving highscores
 var submitButton = document.getElementById("submit-btn");
 
+var userName = "";
+
 
 submitButton.addEventListener("click", function() {
-    var userName = document.getElementById("name");
+    event.preventDefault();
+    userName = document.getElementById("name");
     console.log(userName.value);
 });
 
