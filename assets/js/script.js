@@ -192,7 +192,7 @@ function nextQuestion(event) {
     }
     else if (currentQuestionIndex <= indexOf && timeLeft > 0) {
         currentQuestionIndex = currentQuestionIndex + 1;
-        timeLeft = timeLeft-5;
+        timeLeft = timeLeft-10;
         insertQandA();
     }
     else {
