@@ -1,7 +1,7 @@
 # Timed JavaScript Quiz
 
 ## Purpose
-A fun, timed quiz testing the user's knowledge of JavaScript where they can save their scores to see their progress and compete with themselves or friends. 
+A fun, timed quiz that tests the user's knowledge of JavaScript where they can save their scores to see their progress and compete with themselves or friends. 
 
 ## Build With:
 * HTML
