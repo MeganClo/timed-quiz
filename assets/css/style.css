@@ -2,8 +2,6 @@
     --primary-color: #802bb1;
     --secondary-color: #2d283e;
     --tertiary-color: #d1d7e0;
-    --red-wrong: #c80004;
-    --green-right: #00887A;
 }
 
 * {
@@ -20,14 +18,6 @@ body {
     padding: 0;
     background-color: var(--secondary-color);
     color: var(--tertiary-color); 
-}
-
-body.wrong {
-    background-color: var(--red-wrong);
-}
-
-body.right {
-    background-color: var(--green-right);
 }
 
 .container {

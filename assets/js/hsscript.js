@@ -1,9 +1,10 @@
+// targetting my list
 var userScores = document.getElementById("userScores");
 
+// getting my scores from localstorage
 var savedScores = JSON.parse(localStorage.getItem("scores") || "[]");
 
-console.log("oldScores: ", savedScores);
-
+// adding scores as li elements to page
 userScores.innerHTML = 
 savedScores.map(score => {
     return `<li>${score.userName} - ${score.score}</li>`;

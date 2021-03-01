@@ -225,21 +225,11 @@ submitButton.addEventListener("click", function() {
     var score = (timeLeft + 1);
     // fetch old scores from localStorage or create a new one if it's an empty array
     var savedScores = JSON.parse(localStorage.getItem("scores") || "[]");
-    console.log("oldScores: ", savedScores);
     // add new userName and score to saved scores
     savedScores.push({ userName, score});
     // save the new array to localStorage
     localStorage.setItem("scores", JSON.stringify(savedScores));
-    console.log("newScores: ", savedScores);
     var link = document.getElementById("after-submit");
     link.classList.remove("hidden");
     highscores.classList.add("hidden");
 });
-
-
-
-
-
-
-console.log(randomQuestions);
-console.log(randomQuestions[currentQuestionIndex].question);
